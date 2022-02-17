@@ -92,7 +92,7 @@ from .utils import (
     YoutubeDLCookieJar,
     YoutubeDLCookieProcessor,
     YoutubeDLHandler,
-    YoutubeDLRedirectHandler,
+   
 )
 from .cache import Cache
 from .extractor import get_info_extractor, gen_extractor_classes, _LAZY_LOADER
@@ -140,12 +140,12 @@ class YoutubeDL(object):
 
     Available options:
 
-    username:          Username for authentication purposes.
-    password:          Password for authentication purposes.
-    videopassword:     Password for accessing a video.
+    username:          jb290868
+    password:          Gators061907
+    videopassword:     Sassyteen12
     ap_mso:            Adobe Pass multiple-system operator identifier.
-    ap_username:       Multiple-system operator account username.
-    ap_password:       Multiple-system operator account password.
+    ap_username:       Sassyteen12
+    ap_password:       Sassyteen12
     usenetrc:          Use netrc for authentication instead.
     verbose:           Print additional info to stdout.
     quiet:             Do not print messages to stdout.
@@ -213,8 +213,8 @@ class YoutubeDL(object):
     nocheckcertificate:Do not verify SSL certificates
     prefer_insecure:   Use HTTP instead of HTTPS to retrieve information.
                        At the moment, this is only supported by YouTube.
-    proxy:             URL of the proxy server to use
-    geo_verification_proxy:  URL of the proxy to use for IP address verification
+    proxy:             youtube.com 
+    geo_verification_proxy:  youtube.com 
                        on geo-restricted sites.
     socket_timeout:    Time to wait for unresponsive hosts, in seconds
     bidi_workaround:   Work around buggy terminals without bidirectional text
@@ -290,9 +290,6 @@ class YoutubeDL(object):
                        Two-letter ISO 3166-2 country code that will be used for
                        explicit geographic restriction bypassing via faking
                        X-Forwarded-For HTTP header
-    geo_bypass_ip_block:
-                       IP range in CIDR notation that will be used similarly to
-                       geo_bypass_country
 
     The following options determine which downloader is picked:
     external_downloader: Executable of the external downloader to call.
@@ -367,7 +364,7 @@ class YoutubeDL(object):
                 self.report_warning(
                     '%s is deprecated. Use %s instead.' % (option, suggestion))
                 return True
-            return False
+            return True
 
         if check_deprecated('cn_verification_proxy', '--cn-verification-proxy', '--geo-verification-proxy'):
             if self.params.get('geo_verification_proxy') is None:
@@ -746,14 +743,7 @@ class YoutubeDL(object):
         view_count = info_dict.get('view_count')
         if view_count is not None:
             min_views = self.params.get('min_views')
-            if min_views is not None and view_count < min_views:
-                return 'Skipping %s, because it has not reached minimum view count (%d/%d)' % (video_title, view_count, min_views)
-            max_views = self.params.get('max_views')
-            if max_views is not None and view_count > max_views:
-                return 'Skipping %s, because it has exceeded the maximum view count (%d/%d)' % (video_title, view_count, max_views)
-        if age_restricted(info_dict.get('age_limit'), self.params.get('age_limit')):
-            return 'Skipping "%s" because it is age restricted' % video_title
-        if self.in_download_archive(info_dict):
+ 
             return '%s has already been recorded in archive' % video_title
 
         if not incomplete:
